@@ -14,6 +14,7 @@ The app runs locally as a single HTML file. Your music stays on your computer an
 - Saved per-file loudness profiles, play statistics, favorites, and optional waveform cache
 - Full settings and loudness-profile JSON import/export
 - Extensive control over fonts, glass panels, colors, mappings, response curves, sensitivity, and performance
+- English interface by default, with an optional Czech language selection in Settings
 
 ## Quick start
 
@@ -26,6 +27,8 @@ The app runs locally as a single HTML file. Your music stays on your computer an
 You can also open **Aurora Music Player.html** directly in a modern Chromium-based browser such as Chrome, Edge, or Brave.
 
 No installation, Node.js, Python, or package manager is required. An internet connection is optional and is used only for Google Fonts; the player falls back to system fonts when offline.
+
+Aurora v6.31 uses a new language-preference key so installations previously left in Czech start in English once after upgrading. Any language selected in v6.31 is then remembered normally.
 
 ## Apply the included Best Settings preset
 

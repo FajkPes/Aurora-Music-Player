@@ -2828,7 +2828,7 @@
   }
 
   #stage.dragover::after{
-    content:'Přetáhni MP3 soubory sem';
+    content:'Drop MP3 files here';
     position:absolute; inset:14px;
     border: 2px dashed var(--accent2);
     border-radius:20px;
@@ -12223,10 +12223,11 @@
     const sameDay = d.toDateString() === now.toDateString();
     const yesterday = new Date(now); yesterday.setDate(now.getDate()-1);
     const isYesterday = d.toDateString() === yesterday.toDateString();
-    const timePart = d.toLocaleTimeString('cs-CZ', { hour:'2-digit', minute:'2-digit' });
+    const locale = localStorage.getItem('aurora-language-v2') === 'cs' ? 'cs-CZ' : 'en-GB';
+    const timePart = d.toLocaleTimeString(locale, { hour:'2-digit', minute:'2-digit' });
     if(sameDay) return `Dnes ${timePart}`;
     if(isYesterday) return `Včera ${timePart}`;
-    return d.toLocaleDateString('cs-CZ', { day:'numeric', month:'numeric', year:'numeric' }) + ' ' + timePart;
+    return d.toLocaleDateString(locale, { day:'numeric', month:'numeric', year:'numeric' }) + ' ' + timePart;
   }
 
   function refreshTrackInfoPopoverContent(){
@@ -13311,7 +13312,9 @@
 /* Bilingual UI layer. Kept separate from the audio/visualization engine so
    language changes cannot affect playback, analysis, presets, or rendering. */
 (function(){
-  const LANGUAGE_KEY = 'aurora-language-v1';
+  // v2 intentionally starts in English even if an older Aurora build saved
+  // Czech under the previous key. The user's choice is remembered from here.
+  const LANGUAGE_KEY = 'aurora-language-v2';
   const EN = {
     'Nastavení':'Settings','Přehrávač':'Player','Pozadí':'Background','Spektrogram':'Spectrogram',
     'Obecné':'General','Vrstvy':'Layers','Mapování':'Mapping','Efekty':'Effects',
@@ -13475,7 +13478,49 @@
     'Zapíná/vypíná ukazatel času v hlavní ovládací liště — nezávisle na ukazateli u timeline v záložce Timeline.':'Toggles the time display in the main control bar independently of the timeline time display.',
     'Zjemní ostrý přechod na okraji dat waterfallu — místo tvrdého konce dat plynule dozní do průhledna. Které straně(ám) se to aplikuje, vyber přepínači níže.':'Softens the waterfall data edge so it fades to transparency instead of ending abruptly. Choose the affected sides below.',
     'Zobrazí čas přímo vedle timeline panelu (mimo panel, ne přes něj), nezávisle na ukazateli času v hlavní ovládací liště.':'Shows time beside the timeline panel independently of the time display in the main control bar.',
-    'Čára pod kurzorem se vlní nahoru jako gaussova křivka. Vypnutí vrátí klasickou plochou lištu.':'Makes the line rise under the cursor as a Gaussian wave. Turn it off for a classic flat bar.'
+    'Čára pod kurzorem se vlní nahoru jako gaussova křivka. Vypnutí vrátí klasickou plochou lištu.':'Makes the line rise under the cursor as a Gaussian wave. Turn it off for a classic flat bar.',
+    'Čeština':'Czech','Tvar':'Shape','Rotace':'Rotation','Vypnout vrstvu':'Disable layer',
+    'Nastavení vrstvy':'Layer settings','Vlastní dráha pohybu':'Custom motion path','Boční kývání':'Side sway',
+    'Žádné skladby k přeparsování.':'No tracks to re-detect.',
+    'Počet teček':'Dot count','Automatické houpání rotace':'Automatic rotation sway','Základní jas':'Base brightness',
+    'Míra rozostření':'Blur amount','Celková viditelnost vrstvy':'Overall layer visibility',
+    'Citlivost na MusicSense':'MusicSense sensitivity','Zrcadlit tuto vrstvu (Mirror post-processing)':'Mirror this layer (post-processing)',
+    'Trail (stopa)':'Trail','Délka stopy':'Trail length','Velikost stop (násobič)':'Trail size multiplier',
+    'Zapnuto pro tuto vrstvu':'Enabled for this layer','Sparkles (třpytky)':'Sparkles',
+    'Beat cut (ztmavení na beat)':'Beat cut (darken on beat)','Práh hlasitosti':'Loudness threshold',
+    'Doba držení před spuštěním':'Sustain time before triggering','Tmavost střihu':'Cut darkness',
+    'Délka jednoho střihu':'Single-cut duration','Min. jistota tempa pro sync na beat':'Minimum tempo confidence for beat sync',
+    'Záložní tempo (bez jistoty beatu)':'Fallback tempo (without beat confidence)',
+    'Vlastní mapování (override)':'Custom mapping (override)','Kopírovat křivku':'Copy curve',
+    'Vložit křivku':'Paste curve','Reset na lineární':'Reset to linear','Beat fáze (0-1)':'Beat phase (0-1)',
+    'Orbit kolem středu':'Orbit around center','Ze středu ven':'From center outward','Zdola nahoru':'Rising from bottom',
+    'Zprava doleva':'Right to left','Zleva doprava':'Left to right','Organický':'Organic','Hvězda':'Star',
+    'Sync rychlosti změny barvy s tempem (BPM)':'Sync color-change speed with tempo (BPM)',
+    'Celková viditelnost vrstvy':'Overall layer visibility',
+    'Určuje TVAR pohybu teček — náhodný drift, plynulý tok jedním směrem, nebo pohyb do/ze středu. Rychlost pohybu pořád řídí Rychlost driftu + mapování Rychlost pohybu níže. Vypnuto = původní volný náhodný pohyb (výchozí).':'Selects the dot motion pattern: random drift, directional flow, or movement toward or away from the center. Speed is still controlled by Drift speed plus the Movement speed mapping below. Off keeps the original free random movement.',
+    'Jak moc se tečky kolébají do stran napříč směrem pohybu (kolmo na dráhu "Padání shora"/"Zdola nahoru"/"Zprava doleva"/"Zleva doprava"). 0 % = dokonale rovná dráha bez kolébání. Nesouvisí s "Automatické houpání rotace" výše, které otáčí tvarem, ne jeho pozicí.':'Controls how far dots sway sideways across their direction of travel. 0% produces a perfectly straight path. This is separate from Automatic rotation sway, which rotates the shape rather than moving it.',
+    'Vypnuto (výchozí) = rotace je pevně na hodnotě ze slideru výše. Zapnuto = tečky se navíc jemně houpou ±8° kolem této hodnoty, rychlostí odvozenou z aktuálního driftu/rychlosti vrstvy.':'Off keeps rotation fixed at the slider value. On gently sways dots ±8° around that value at a speed derived from the current layer movement.',
+    'Zaoblí ostré hrany a rohy tvaru (funguje i na vnitřní zářezy u crosshairu). 0 % = původní ostré hrany, 100 % = maximální zaoblení.':'Rounds sharp shape edges and corners, including inner crosshair notches. 0% keeps sharp edges; 100% applies maximum rounding.',
+    'Finální násobič viditelnosti celé vrstvy, navrch Základního jasu i flashování. Na 0 % je vrstva neviditelná, ale zůstává nakonfigurovaná — vhodné na dočasné schování vrstvy.':'Final visibility multiplier applied after Base brightness and flashing. At 0% the layer is hidden but remains configured.',
+    'Násobí, jak silně tuto vrstvu ovlivňují sdílená mapování Velikost/Rychlost/Flash/Blur níže. Na 0 % vrstva na hudbu vůbec nereaguje, jen sedí na místě dle Základního jasu. Nemá vliv na cíle, které mají níže zapnutý vlastní Override — ty mají vlastní citlivost.':'Scales how strongly the shared Size, Speed, Flash, and Blur mappings affect this layer. At 0% the layer does not react to music. Targets with their own override use their own sensitivity.',
+    'Vypnuto = tato vrstva se nikdy nezrcadlí, i když je globální efekt "Zrcadlení (Mirror)" v Efektech pozadí zapnutý pro zbytek pozadí.':'Off prevents this layer from being mirrored even when the global Mirror effect is enabled for the rest of the background.',
+    '100 % = ghost kopie mají stejnou velikost jako samotný blob. Méně = menší ghosts, více = větší. Tvar ghosts odpovídá vybranému tvaru vrstvy. Rychlost blednutí celé stopy se nastavuje globálně níže v "Efekty pozadí".':'100% makes trail ghosts the same size as the blob. Lower values make them smaller; higher values make them larger. Trail fade speed is configured globally under Background effects.',
+    'Tečky této vrstvy náhodně vyzařují drobné třpytivé jiskřičky, které odletí kousek stranou a zhasnou. Hustotu, velikost a délku života třpytek nastavíš globálně níže v "Efekty pozadí" (globální hlavní vypínač musí být taky zapnutý).':'Dots in this layer emit small random sparkles that drift aside and fade. Configure sparkle density, size, and lifetime globally under Background effects; the global master switch must also be enabled.',
+    'Tečky této vrstvy krátce ztmavnou v rytmu beatu — ale jen když hlasitost zůstane delší dobu skoro na 100 % (typicky "zeď zvuku" na dropu/vrcholu). Jednorázový hlasitý úder to nespustí, potřeba je souvislé držení hlasitosti nahoře. Každá vrstva má vlastní nezávislé nastavení níže.':'Dots in this layer briefly darken on the beat, but only while loudness stays near maximum long enough. A single loud hit does not trigger it. Each layer has independent settings below.',
+    'Hlasitost musí být na/nad touto hodnotou, aby se počítala jako "skoro na maximu".':'Loudness must reach this value to count as near maximum.',
+    'Jak dlouho musí hlasitost nepřetržitě zůstat nad prahem, než střihy vůbec začnou. Krátký pokles pod práh počítadlo vynuluje.':'How long loudness must remain continuously above the threshold before cuts begin. A brief drop below it resets the timer.',
+    'Jak moc tato vrstva ztmavne v nejtmavším bodě jednoho střihu. 100 % = úplně neviditelná, méně = jen ztlumená.':'How dark this layer becomes at the darkest point of a cut. 100% is fully hidden; lower values only dim it.',
+    'Jak dlouho trvá jeden střih od začátku ztmavení až po návrat zpátky do normálu.':'Duration of one cut from the start of darkening until the layer returns to normal.',
+    'Pod touto jistotou detekce tempa se střihy nesynchronizují přesně na beat — místo toho poběží na pevný interval níže.':'Below this tempo-detection confidence, cuts use the fixed fallback interval instead of exact beat synchronization.',
+    'Necháno vypnuté = tato vrstva používá sdílené mapování ze záložky výše. Zapni override pro konkrétní cíl a nastav mu vlastní zdroj, citlivost i křivku, nezávisle na ostatních vrstvách.':'When left off, this layer uses the shared mapping above. Enable an override to give a target its own source, sensitivity, and curve.',
+    '0 % = tempo neovlivňuje rychlost (násobitel 1×). 100 % = plný efekt mapování BPM → násobitel níže.':'0% means tempo does not affect speed. 100% applies the full BPM-to-multiplier mapping below.',
+    '0 % = tempo neovlivňuje rychlost změny barvy (násobitel 1×). 100 % = plný efekt mapování BPM → násobitel níže.':'0% means tempo does not affect color-change speed. 100% applies the full BPM-to-multiplier mapping below.',
+    'Pomalá písnička (BPM blíže min) násobí rychlost hodnotou „při min BPM" (např. 0 nebo 0,1). Rychlá (BPM blíže max) násobí „při max BPM" (typicky 1 = beze změny). Mezi tím plynule interpoluje.':'A slow track near the minimum BPM multiplies speed by the minimum-BPM value; a fast track near the maximum uses the maximum-BPM value. Values in between are interpolated smoothly.',
+    'Pomalá písnička (BPM blíže min) násobí rychlost změny barvy hodnotou „při min BPM" (např. 0 nebo 0,1). Rychlá (BPM blíže max) násobí „při max BPM" (typicky 1 = beze změny). Mezi tím plynule interpoluje.':'A slow track near the minimum BPM multiplies color-change speed by the minimum-BPM value; a fast track uses the maximum-BPM value. Values in between are interpolated smoothly.',
+    'Dodatečné časové vyhlazení výsledné hodnoty tohoto mapování — aplikuje se úplně naposled, po křivce odezvy i po Ultra boostu, takže vyhlazuje celý výsledek dohromady. 0 % (výchozí) = beze změny, vyšší = pomalejší/plynulejší reakce na náhlé skoky.':'Additional temporal smoothing applied last, after the response curve and Ultra boost. 0% leaves the result unchanged; higher values react more slowly and smoothly to sudden jumps.',
+    'Nad prahem hodnota plynule (s vyhlazením) naroste až o zadané % navíc — zdroj na 100 % pak efektivně "vybouchne" nad rámec normálu.':'Above the threshold, the smoothed value grows by up to the configured extra percentage, allowing a 100% source to burst beyond the normal range.',
+    'Jak rychle flash najede na plný jas, když namapovaná hodnota vzroste.':'How quickly a flash reaches full brightness when the mapped value rises.',
+    'Jak dlouho flash doznívá, když hodnota zase klesne.':'How long a flash fades after the mapped value drops.'
   };
 
   const originalText = new WeakMap();
@@ -13488,11 +13533,22 @@
     if(EN[trimmed]) return value.replace(trimmed, EN[trimmed]);
     let match = trimmed.match(/^(\d+) skladeb$/);
     if(match) return value.replace(trimmed, `${match[1]} tracks`);
+    match = trimmed.match(/^Vrstva (\d+) — (.+)$/);
+    if(match) return value.replace(trimmed, `Layer ${match[1]} — ${EN[match[2]] || match[2]}`);
+    match = trimmed.match(/^(\d+)× tečka, velikost ([\d.]+)×(?: · (.+))?$/);
+    if(match){
+      const motion = match[3] ? ` · ${EN[match[3]] || match[3]}` : '';
+      return value.replace(trimmed, `${match[1]}× dot, size ${match[2]}×${motion}`);
+    }
+    match = trimmed.match(/^Přidat vrstvu \((\d+) volných z (\d+)\)$/);
+    if(match) return value.replace(trimmed, `Add layer (${match[1]} available of ${match[2]})`);
     match = trimmed.match(/^Importováno (\d+) profilů$/);
     if(match) return value.replace(trimmed, `Imported ${match[1]} profiles`);
     match = trimmed.match(/^Hotovo — (\d+) skladeb přeparsováno\.$/);
     if(match) return value.replace(trimmed, `Done — re-detected ${match[1]} tracks.`);
+    if(trimmed.startsWith('Dnes ')) return value.replace(trimmed, 'Today ' + trimmed.slice(5));
     if(trimmed.startsWith('Včera ')) return value.replace(trimmed, 'Yesterday ' + trimmed.slice(6));
+    if(trimmed.startsWith('Bulk analýza selhala pro ')) return value.replace(trimmed, 'Bulk analysis failed for ' + trimmed.slice(25));
     return value;
   }
 
@@ -13534,6 +13590,12 @@
     applying = false;
   }
 
+  // Browser modal messages are outside the DOM and therefore cannot be
+  // handled by the tree observer. Translate them at the single native entry
+  // point so import errors and other future alerts follow the UI language.
+  const nativeAlert = window.alert.bind(window);
+  window.alert = message=>nativeAlert(language === 'en' ? translateValue(String(message)) : message);
+
   function installSelector(){
     if(document.getElementById('auroraLanguage')) return;
     const fontControl = document.getElementById('ctl-fontBody');
@@ -13555,9 +13617,37 @@
   new MutationObserver(records=>{
     if(applying) return;
     applying = true;
-    records.forEach(record=>record.addedNodes.forEach(node=>translateTree(node)));
+    records.forEach(record=>{
+      if(record.type === 'childList') record.addedNodes.forEach(node=>translateTree(node));
+      if(record.type === 'characterData' && language === 'en' && !isUserMetadata(record.target)){
+        const current = record.target.nodeValue;
+        const translated = translateValue(current);
+        if(translated !== current){
+          originalText.set(record.target, current);
+          record.target.nodeValue = translated;
+        }
+      }
+      if(record.type === 'attributes' && language === 'en' && !isUserMetadata(record.target)){
+        const attr = record.attributeName;
+        const current = record.target.getAttribute(attr);
+        if(current !== null){
+          const translated = translateValue(current);
+          if(translated !== current){
+            if(!originalAttrs.has(record.target)) originalAttrs.set(record.target, {});
+            originalAttrs.get(record.target)[attr] = current;
+            record.target.setAttribute(attr, translated);
+          }
+        }
+      }
+    });
     applying = false;
-  }).observe(document.body, {childList:true, subtree:true});
+  }).observe(document.body, {
+    childList:true,
+    subtree:true,
+    characterData:true,
+    attributes:true,
+    attributeFilter:['title','placeholder','aria-label']
+  });
 })();
 </script>
 </body>
