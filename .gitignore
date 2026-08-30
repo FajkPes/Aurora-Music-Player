@@ -1,0 +1,6 @@
+# Personal/example loudness profile data is not required by the application.
+Example Loudness Profiles.json
+
+# Local release artifacts
+*.zip
+SHA256SUMS.txt

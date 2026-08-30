@@ -1,0 +1,803 @@
+{
+  "musicvizSettingsExport": true,
+  "version": 1,
+  "exportedAt": "2026-08-29T20:16:42.312Z",
+  "settings": {
+    "normalize": true,
+    "shuffleEnabled": false,
+    "repeatEnabled": false,
+    "autoplayOnImport": true,
+    "randomFirstTrack": true,
+    "smartTitleParsing": true,
+    "scrollFrameSkipEnabled": false,
+    "targetLufs": -14,
+    "loudFloorDb": -45,
+    "loudCeilDb": -11,
+    "sensBass": 1,
+    "sensMid": 1.6,
+    "sensHigh": 2.2,
+    "globalSens": 1,
+    "fftIdx": 2,
+    "smoothing": 0.75,
+    "senseSmooth": 0.4,
+    "fontBody": "Plus Jakarta Sans",
+    "fontDisplay": "Space Grotesk",
+    "fontMono": "JetBrains Mono",
+    "panelAlpha": 0.72,
+    "timelineLoudnessWaveform": true,
+    "timelineWaveformAlwaysVisible": true,
+    "cacheWaveform": false,
+    "timelineWaveformHeight": 2,
+    "timelineWaveformOffset": 0,
+    "timelineWaveformScale": 2,
+    "timelineWaveformSamplesPerSec": 1.5,
+    "timelineWaveformSmooth": 1,
+    "timelineWave": true,
+    "timelineWavePeak": 0.25,
+    "timelineWaveSymmetry": false,
+    "timelineSigma": 0.025,
+    "ctrlChipsEnabled": true,
+    "ctrlChipAlpha": 0.38,
+    "ctrlChipBlur": 10,
+    "ctrlChipRadius": 14,
+    "timelineIslandHeight": 30,
+    "timelineIslandGap": 14,
+    "timelineIslandMerged": true,
+    "timelineIslandInset": 14,
+    "timelineIslandOverlap": 0,
+    "timelineTimeLabelEnabled": true,
+    "timelineTimeLabelSide": "right",
+    "ctrlBarTimeLabelEnabled": true,
+    "ctrlBarTrackInfoEnabled": true,
+    "ctrlBarLikedOutlineHoverOnly": true,
+    "stageTrackInfoEnabled": true,
+    "stageLikedOutlineHoverOnly": false,
+    "stageLikedOutlinePulse": true,
+    "stageLikedOutlinePulseSource": "mid",
+    "stageLikedOutlinePulseSensitivity": 1,
+    "stageLikedOutlinePulseFloor": 20,
+    "liveStatsIslandEnabled": true,
+    "playerColorSync": true,
+    "playerColor1": "#ff2ec4",
+    "playerColor2": "#7c3aed",
+    "playerSyncThumbs": true,
+    "playerSyncPlayBtn": true,
+    "playerSyncGear": false,
+    "playerSyncScanline": true,
+    "bgEnabled": true,
+    "reduceFlashIntensity": false,
+    "reduceColorSpeedIntensity": false,
+    "bgColor1": "#0091ff",
+    "bgColor2": "#ff00ae",
+    "bgBaseDrift": 1,
+    "bgLayers": [
+      {
+        "enabled": true,
+        "shape": "circle",
+        "count": 8,
+        "size": 1,
+        "rotation": 23,
+        "baseAlpha": 0.21,
+        "blurEnabled": true,
+        "blur": 100,
+        "sensMult": 1,
+        "pathEnabled": false,
+        "path": "random",
+        "swayAmount": 0.02,
+        "opacity": 1,
+        "rotationWobble": false,
+        "trailEnabled": false,
+        "trailLength": 0.05,
+        "trailWidth": 0.7,
+        "sparklesEnabled": false,
+        "mirrorEnabled": true,
+        "cornerRadius": 0,
+        "beatCutEnabled": false,
+        "beatCutThreshold": 95,
+        "beatCutSustainSec": 0.1,
+        "beatCutDarkness": 0.3,
+        "beatCutDuration": 200,
+        "beatCutMinConfidence": 0.35,
+        "beatCutFallbackBpm": 120,
+        "overrides": {
+          "blur": {
+            "source": "loudnessPct",
+            "sensitivity": 0.3,
+            "enabled": false,
+            "curvePoints": [
+              {
+                "x": 0.7068273092369478,
+                "y": 0.08895582329317264
+              },
+              {
+                "x": 0.8032128514056225,
+                "y": 0.41666666666666663
+              },
+              {
+                "x": 0.9116465863453815,
+                "y": 0.1275100401606426
+              }
+            ],
+            "clamp": true,
+            "clampMin": 0,
+            "clampMax": 1,
+            "normalize": false,
+            "normMin": 0,
+            "normMax": 1,
+            "boost": true,
+            "boostThreshold": 0.8,
+            "boostAmount": 0.1,
+            "smoothAmount": 0,
+            "curve": 3
+          }
+        }
+      },
+      {
+        "enabled": true,
+        "shape": "crosshair",
+        "count": 8,
+        "size": 0.2,
+        "rotation": 135,
+        "baseAlpha": 0,
+        "blurEnabled": false,
+        "blur": 5,
+        "sensMult": 1,
+        "pathEnabled": true,
+        "path": "fall",
+        "swayAmount": 0.01,
+        "opacity": 0.06,
+        "rotationWobble": true,
+        "trailEnabled": false,
+        "trailLength": 0.05,
+        "trailWidth": 2,
+        "sparklesEnabled": true,
+        "mirrorEnabled": false,
+        "cornerRadius": 0.4,
+        "beatCutEnabled": true,
+        "beatCutThreshold": 90,
+        "beatCutSustainSec": 0.1,
+        "beatCutDarkness": 0.7,
+        "beatCutDuration": 400,
+        "beatCutMinConfidence": 0.35,
+        "beatCutFallbackBpm": 120,
+        "overrides": {
+          "flash": {
+            "source": "high",
+            "sensitivity": 1.02,
+            "enabled": true,
+            "curvePoints": [
+              {
+                "x": 0.5287769784172662,
+                "y": 0.12275179856115104
+              },
+              {
+                "x": 0.6693548387096774,
+                "y": 0.42993951612903225
+              },
+              {
+                "x": 0.8467741935483871,
+                "y": 0.7654233870967742
+              }
+            ],
+            "clamp": true,
+            "clampMin": 0,
+            "clampMax": 0.78,
+            "normalize": true,
+            "normMin": 0,
+            "normMax": 100,
+            "boost": true,
+            "boostThreshold": 0.55,
+            "boostAmount": 2,
+            "curve": 5,
+            "smoothAmount": 0.05
+          },
+          "colorSpeed": {
+            "source": "high",
+            "sensitivity": 2,
+            "enabled": true,
+            "curvePoints": [
+              {
+                "x": 0.4497991967871486,
+                "y": 0.08775100401606428
+              },
+              {
+                "x": 0.8084415584415584,
+                "y": 0.2517857142857143
+              },
+              {
+                "x": 0.9058441558441559,
+                "y": 0.4751623376623376
+              }
+            ],
+            "clamp": false,
+            "clampMin": 0,
+            "clampMax": 1,
+            "normalize": false,
+            "normMin": 0,
+            "normMax": 1,
+            "boost": false,
+            "boostThreshold": 0.9,
+            "boostAmount": 0.1,
+            "curve": 2.063177067680795,
+            "tempoSync": false,
+            "tempoSens": 1,
+            "tempoMultMin": 0,
+            "tempoMultMax": 1,
+            "tempoBpmMin": 0,
+            "tempoBpmMax": 250,
+            "colorMode": "player",
+            "customColor": "#000000",
+            "smoothAmount": 0
+          },
+          "size": {
+            "source": "high",
+            "sensitivity": 0.3,
+            "enabled": true,
+            "curvePoints": [
+              {
+                "x": 0.5287769784172662,
+                "y": 0.1817446043165467
+              },
+              {
+                "x": 0.7697841726618705,
+                "y": 0.6824640287769784
+              },
+              {
+                "x": 0.8920863309352518,
+                "y": 0.7572841726618705
+              }
+            ],
+            "clamp": false,
+            "clampMin": 0,
+            "clampMax": 0.92,
+            "normalize": false,
+            "normMin": 0,
+            "normMax": 100,
+            "boost": true,
+            "boostThreshold": 0.85,
+            "boostAmount": 0.5,
+            "curve": 2.846626597125765,
+            "smoothAmount": 0.01
+          },
+          "speed": {
+            "source": "high",
+            "sensitivity": 2.81,
+            "enabled": true,
+            "curvePoints": [
+              {
+                "x": 0.5215827338129496,
+                "y": 0.5098021582733813
+              },
+              {
+                "x": 0.7050359712230215,
+                "y": 0.4867805755395683
+              }
+            ],
+            "clamp": true,
+            "clampMin": 0,
+            "clampMax": 1,
+            "normalize": false,
+            "normMin": 0,
+            "normMax": 100,
+            "boost": true,
+            "boostThreshold": 0.7,
+            "boostAmount": 0.4,
+            "tempoSync": false,
+            "tempoSens": 1,
+            "tempoMultMin": 0.3,
+            "tempoMultMax": 1,
+            "tempoBpmMin": 0,
+            "tempoBpmMax": 250,
+            "curve": 3.0851693136000478,
+            "smoothAmount": 0.1
+          }
+        }
+      },
+      {
+        "enabled": false,
+        "shape": "square",
+        "count": 24,
+        "size": 0.3,
+        "rotation": 0,
+        "baseAlpha": 0,
+        "blurEnabled": false,
+        "blur": 135,
+        "sensMult": 0.3,
+        "pathEnabled": false,
+        "path": "random",
+        "swayAmount": 0.02,
+        "opacity": 0.52,
+        "rotationWobble": false,
+        "trailEnabled": false,
+        "trailLength": 0.43,
+        "trailWidth": 1,
+        "sparklesEnabled": false,
+        "mirrorEnabled": false,
+        "cornerRadius": 0,
+        "beatCutEnabled": false,
+        "beatCutThreshold": 97,
+        "beatCutSustainSec": 1.2,
+        "beatCutDarkness": 0.7,
+        "beatCutDuration": 90,
+        "beatCutMinConfidence": 0.35,
+        "beatCutFallbackBpm": 120,
+        "overrides": {
+          "size": {
+            "source": "mid",
+            "sensitivity": 0.84,
+            "enabled": true,
+            "curvePoints": [
+              {
+                "x": 0.6103896103896104,
+                "y": 0.27516233766233766
+              },
+              {
+                "x": 0.7871485943775101,
+                "y": 0.4576305220883534
+              },
+              {
+                "x": 0.9123376623376623,
+                "y": 0.5660714285714286
+              }
+            ],
+            "clamp": false,
+            "clampMin": 0,
+            "clampMax": 0.96,
+            "normalize": false,
+            "normMin": 0,
+            "normMax": 100,
+            "boost": false,
+            "boostThreshold": 0.8,
+            "boostAmount": 0.5,
+            "smoothAmount": 0.01,
+            "curve": 2.846626597125765
+          }
+        }
+      },
+      {
+        "enabled": false,
+        "shape": "diamond",
+        "count": 4,
+        "size": 0.2,
+        "rotation": 0,
+        "baseAlpha": 0,
+        "blurEnabled": false,
+        "blur": 0,
+        "sensMult": 1.2,
+        "pathEnabled": true,
+        "path": "orbit",
+        "swayAmount": 0.02,
+        "opacity": 0.05,
+        "rotationWobble": true,
+        "trailEnabled": false,
+        "trailLength": 0.4,
+        "trailWidth": 0.6,
+        "sparklesEnabled": false,
+        "mirrorEnabled": true,
+        "cornerRadius": 0,
+        "beatCutEnabled": false,
+        "beatCutThreshold": 97,
+        "beatCutSustainSec": 1.2,
+        "beatCutDarkness": 0.7,
+        "beatCutDuration": 90,
+        "beatCutMinConfidence": 0.35,
+        "beatCutFallbackBpm": 120,
+        "overrides": {
+          "size": {
+            "source": "mid",
+            "sensitivity": 1,
+            "enabled": true,
+            "curvePoints": [
+              {
+                "x": 0.6103896103896104,
+                "y": 0.27516233766233766
+              },
+              {
+                "x": 0.7871485943775101,
+                "y": 0.4576305220883534
+              },
+              {
+                "x": 0.9123376623376623,
+                "y": 0.5660714285714286
+              }
+            ],
+            "clamp": false,
+            "clampMin": 0,
+            "clampMax": 0.96,
+            "normalize": false,
+            "normMin": 0,
+            "normMax": 100,
+            "boost": false,
+            "boostThreshold": 0.8,
+            "boostAmount": 0.5,
+            "curve": 2.846626597125765,
+            "smoothAmount": 0
+          },
+          "speed": {
+            "source": "mid",
+            "sensitivity": 1.6,
+            "enabled": true,
+            "curvePoints": [
+              {
+                "x": 0.6038961038961039,
+                "y": 0.3712662337662338
+              },
+              {
+                "x": 0.7550200803212851,
+                "y": 0.6608433734939759
+              },
+              {
+                "x": 0.8634538152610441,
+                "y": 0.8214859437751004
+              }
+            ],
+            "clamp": true,
+            "clampMin": 0,
+            "clampMax": 1,
+            "normalize": false,
+            "normMin": 0,
+            "normMax": 100,
+            "boost": true,
+            "boostThreshold": 0.85,
+            "boostAmount": 1.1,
+            "curve": 3.0851693136000478,
+            "tempoSync": false,
+            "tempoSens": 1,
+            "tempoMultMin": 0,
+            "tempoMultMax": 1,
+            "tempoBpmMin": 0,
+            "tempoBpmMax": 250,
+            "smoothAmount": 0
+          },
+          "flash": {
+            "source": "mid",
+            "sensitivity": 1.49,
+            "enabled": true,
+            "curvePoints": [
+              {
+                "x": 0.5582329317269076,
+                "y": 0.1614457831325301
+              },
+              {
+                "x": 0.7590361445783133,
+                "y": 0.2829317269076306
+              },
+              {
+                "x": 0.8955823293172691,
+                "y": 0.4977911646586345
+              }
+            ],
+            "clamp": false,
+            "clampMin": 0.7,
+            "clampMax": 1,
+            "normalize": true,
+            "normMin": 0,
+            "normMax": 100,
+            "boost": false,
+            "boostThreshold": 0.95,
+            "boostAmount": 2,
+            "curve": 5,
+            "smoothAmount": 0
+          },
+          "colorSpeed": {
+            "source": "loudnessPct",
+            "sensitivity": 2,
+            "enabled": true,
+            "curvePoints": [
+              {
+                "x": 0.4497991967871486,
+                "y": 0.08775100401606428
+              },
+              {
+                "x": 0.8084415584415584,
+                "y": 0.2517857142857143
+              },
+              {
+                "x": 0.9058441558441559,
+                "y": 0.4751623376623376
+              }
+            ],
+            "clamp": false,
+            "clampMin": 0,
+            "clampMax": 1,
+            "normalize": false,
+            "normMin": 0,
+            "normMax": 1,
+            "boost": false,
+            "boostThreshold": 0.9,
+            "boostAmount": 0.1,
+            "curve": 2.063177067680795,
+            "tempoSync": false,
+            "tempoSens": 1,
+            "tempoMultMin": 0,
+            "tempoMultMax": 1,
+            "tempoBpmMin": 0,
+            "tempoBpmMax": 250,
+            "colorMode": "cycle",
+            "customColor": "#ff2ec4",
+            "smoothAmount": 0
+          }
+        }
+      }
+    ],
+    "bgMapSize": {
+      "source": "loudnessPct",
+      "sensitivity": 0.24,
+      "enabled": true,
+      "curvePoints": [
+        {
+          "x": 0.6103896103896104,
+          "y": 0.27516233766233766
+        },
+        {
+          "x": 0.7871485943775101,
+          "y": 0.4576305220883534
+        },
+        {
+          "x": 0.9123376623376623,
+          "y": 0.5660714285714286
+        }
+      ],
+      "clamp": false,
+      "clampMin": 0,
+      "clampMax": 0.96,
+      "normalize": false,
+      "normMin": 0,
+      "normMax": 100,
+      "boost": false,
+      "boostThreshold": 0.8,
+      "boostAmount": 0.5,
+      "smoothAmount": 0.01,
+      "curve": 2.846626597125765
+    },
+    "bgMapSpeed": {
+      "source": "loudnessPct",
+      "sensitivity": 3,
+      "enabled": true,
+      "curvePoints": [
+        {
+          "x": 0.6038961038961039,
+          "y": 0.3712662337662338
+        },
+        {
+          "x": 0.7550200803212851,
+          "y": 0.6608433734939759
+        },
+        {
+          "x": 0.8634538152610441,
+          "y": 0.8214859437751004
+        }
+      ],
+      "clamp": true,
+      "clampMin": 0,
+      "clampMax": 1,
+      "normalize": false,
+      "normMin": 0,
+      "normMax": 100,
+      "boost": true,
+      "boostThreshold": 0.95,
+      "boostAmount": 0.5,
+      "tempoSync": true,
+      "tempoSens": 0.9,
+      "tempoMultMin": 0.4,
+      "tempoMultMax": 0.9,
+      "tempoBpmMin": 0,
+      "tempoBpmMax": 250,
+      "smoothAmount": 0,
+      "curve": 3.0851693136000478
+    },
+    "bgMapFlash": {
+      "source": "bass",
+      "sensitivity": 0.2,
+      "enabled": true,
+      "curvePoints": [
+        {
+          "x": 0.5582329317269076,
+          "y": 0.1614457831325301
+        },
+        {
+          "x": 0.7590361445783133,
+          "y": 0.2829317269076306
+        },
+        {
+          "x": 0.8955823293172691,
+          "y": 0.4977911646586345
+        }
+      ],
+      "clamp": false,
+      "clampMin": 0,
+      "clampMax": 1,
+      "normalize": true,
+      "normMin": 0,
+      "normMax": 100,
+      "boost": false,
+      "boostThreshold": 0.95,
+      "boostAmount": 2,
+      "smoothAmount": 0,
+      "curve": 5
+    },
+    "bgMapColorSpeed": {
+      "source": "loudnessPct",
+      "sensitivity": 2,
+      "enabled": true,
+      "curvePoints": [
+        {
+          "x": 0.4497991967871486,
+          "y": 0.08775100401606428
+        },
+        {
+          "x": 0.8084415584415584,
+          "y": 0.2517857142857143
+        },
+        {
+          "x": 0.9058441558441559,
+          "y": 0.4751623376623376
+        }
+      ],
+      "clamp": false,
+      "clampMin": 0,
+      "clampMax": 1,
+      "normalize": false,
+      "normMin": 0,
+      "normMax": 1,
+      "boost": false,
+      "boostThreshold": 0.9,
+      "boostAmount": 0.1,
+      "tempoSync": true,
+      "tempoSens": 1,
+      "tempoMultMin": 0.4,
+      "tempoMultMax": 1,
+      "tempoBpmMin": 0,
+      "tempoBpmMax": 250,
+      "smoothAmount": 0,
+      "curve": 2.063177067680795
+    },
+    "bgMapBlur": {
+      "source": "loudnessPct",
+      "sensitivity": 0.3,
+      "enabled": false,
+      "curvePoints": [
+        {
+          "x": 0.7068273092369478,
+          "y": 0.08895582329317264
+        },
+        {
+          "x": 0.8032128514056225,
+          "y": 0.41666666666666663
+        },
+        {
+          "x": 0.9116465863453815,
+          "y": 0.1275100401606426
+        }
+      ],
+      "clamp": true,
+      "clampMin": 0,
+      "clampMax": 1,
+      "normalize": false,
+      "normMin": 0,
+      "normMax": 1,
+      "boost": true,
+      "boostThreshold": 0.8,
+      "boostAmount": 0.1,
+      "smoothAmount": 0,
+      "curve": 3
+    },
+    "bgSensDivisor": 20,
+    "bgFlashAttack": 0.01,
+    "bgFlashRelease": 0.3,
+    "trailFadeRate": 0.12,
+    "sparklesEnabled": false,
+    "sparklesRate": 2,
+    "sparklesSize": 3,
+    "sparklesLife": 0.2,
+    "fxMirrorEnabled": true,
+    "fxMirrorAxis": "both",
+    "fxMirrorAmount": 0.25,
+    "fxMirror2Enabled": false,
+    "fxMirror2Axis": "x",
+    "fxMirror2Amount": 0.25,
+    "fxGlitchEnabled": false,
+    "fxGlitchFreq": 1,
+    "fxGlitchAmount": 4,
+    "fxGlitchDuration": 60,
+    "fxGlitchOnBeat": true,
+    "fxVignette": 0.1,
+    "fxScanlines": 1,
+    "fxOverallOpacity": 1,
+    "fxBrightness": 0.83,
+    "fxContrast": 1.21,
+    "fxSaturation": 1,
+    "fxHue": 0,
+    "specEnabled": true,
+    "specHeight": 250,
+    "specPxPerSec": 102,
+    "specHistorySec": 25,
+    "specFillWidth": true,
+    "specFreqMin": 20,
+    "specFreqMax": 16000,
+    "specLogScale": true,
+    "specGain": 1,
+    "specGamma": 0.8,
+    "specSmoothBlur": 0.5,
+    "specEdgeFade": 0.29,
+    "specEdgeFadeLeft": true,
+    "specEdgeFadeRight": true,
+    "specEdgeFadeTop": true,
+    "specEdgeFadeBottom": false,
+    "specEdgeFadeVAmount": 0.25,
+    "specPalette": "heatmap",
+    "specGlassMode": true,
+    "specGlassAlpha": 0.32,
+    "specGlassBlur": 1,
+    "specGlowStrength": 1,
+    "specPlaylistOffset": true,
+    "specAnchor": "right",
+    "specSymmetric": false,
+    "specInsideIsland": true,
+    "specInsideIslandBothPanels": false,
+    "specIslandVisibility": 1,
+    "uiStyle": "oneui",
+    "uiRadiusScale": 1,
+    "uiBlurAmount": 0,
+    "screenFlashEnabled": true,
+    "screenFlashThreshold": 97,
+    "screenFlashSustainSec": 0.5,
+    "screenFlashDarkness": 0.4,
+    "screenFlashCutDuration": 80,
+    "screenFlashMinConfidence": 0.35,
+    "screenFlashFallbackBpm": 120,
+    "screenFlashIntensity": 0.35,
+    "timelineIslandFillet": 0,
+    "tempoModifierEnabled": true,
+    "tempoBpmFloor": 0,
+    "tempoBpmCeil": 200,
+    "tempoMultFloor": 0.1,
+    "tempoMultCeil": 1,
+    "tempoSmoothTime": 0.6,
+    "tempoBpmLow": 0,
+    "tempoBpmHigh": 170,
+    "tempoBpmMax": 250,
+    "timelineTimeLabelPos": "left",
+    "specFutureSec": 14,
+    "specShowFuture": true,
+    "specAutoAnalyze": true,
+    "playerSyncImportBtn": true,
+    "sensRms": 1,
+    "tempoWin": 2,
+    "fxChromaEnabled": false,
+    "fxChromaAmount": 0,
+    "bgMapChroma": {
+      "source": "loudnessPct",
+      "sensitivity": 0.99,
+      "enabled": false,
+      "curvePoints": [
+        {
+          "x": 0.8112449799196787,
+          "y": 0.21867469879518076
+        }
+      ],
+      "clamp": false,
+      "clampMin": 0,
+      "clampMax": 1,
+      "normalize": false,
+      "normMin": 0,
+      "normMax": 1,
+      "boost": false,
+      "boostThreshold": 0.8,
+      "boostAmount": 0.5
+    },
+    "fxDistortEnabled": false,
+    "fxDistortAmount": 80,
+    "fxDistortScale": 0.007,
+    "fxDistortSpeed": 4,
+    "bgCount": 8,
+    "bgSize": 0.75,
+    "bgBlur": 40,
+    "bgBaseAlpha": 0.1,
+    "bgBlurEnabled": true,
+    "bgShape": "circle",
+    "bgRotation": 0,
+    "bgColorChaos": true,
+    "bgColorBaseSpeed": 0.6
+  }
+}
