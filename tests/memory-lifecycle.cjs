@@ -1,0 +1,30 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const modules=new Map(),workers=new Map();
+const App={define:(id,fn)=>modules.set(id,fn),addParts(){},registerWorker:(id,fn)=>workers.set(id,fn),registerWorkerPart(){}};
+vm.runInNewContext(fs.readFileSync('workers.js','utf8'),{window:{Aurora:App}});
+let Capture;
+const scope={AudioWorkletProcessor:class{constructor(){this.port={};}},registerProcessor:(name,cls)=>Capture=cls,sampleRate:48000,currentTime:0};
+vm.runInNewContext('('+workers.get('worklet').toString()+')()',scope);
+const processor=new Capture(),sink={postMessage(){},close(){this.closed=true;}};
+const message=data=>processor.port.onmessage({data});
+message({type:'connect',port:sink});sink.onmessage({data:{buffer:new ArrayBuffer(45056)}});
+processor.process([[new Float32Array(128)]]);const position=processor.index;
+message({type:'active',active:false});
+for(let i=0;i<10000;i++)assert.equal(processor.process([]),true);
+assert.equal(processor.index,position,'Suspended visualization does not keep copying samples on the audio thread');
+message({type:'active',active:true});processor.process([[new Float32Array(128)]]);assert(processor.index>position);
+message({type:'dispose'});assert.equal(processor.process([]),false,'Disconnected capture can be collected by Web Audio');
+assert.equal(processor.buffers.length,0);assert(sink.closed);assert.equal(sink.onmessage,null);assert.equal(processor.port.onmessage,null);
+
+// The fallback trail surface used to stay full-sized after turning its effect off.
+let canvas={width:1,height:1,getContext:()=>({save(){},restore(){},scale(){},setTransform(){},clearRect(){}})};
+App.el=()=>canvas;App.scenePixelRatio=(w,h)=>Math.min(1.5,Math.sqrt(4000000/(w*h)));
+vm.runInNewContext(fs.readFileSync('background.js','utf8'),{window:{Aurora:App}});
+modules.get('background/trails-sparkles')();
+assert.equal(App.TrailFx.beginFrame(7680,4320,true,false),true);App.TrailFx.endFrame();
+assert(canvas.width*canvas.height<=4001000,'Fallback trails share the scene pixel budget');
+App.TrailFx._particles.push({});assert.equal(App.TrailFx.beginFrame(7680,4320,false,false),false);
+assert.equal(canvas.width*canvas.height,1);assert.equal(App.TrailFx._particles.length,0);
+assert.equal(App.TrailFx.beginFrame(7680,4320,true,false),true);assert(canvas.width>1);App.TrailFx.endFrame();
+App.TrailFx.release();assert.equal(canvas.width,1);
+console.log('PASS: idle/disposed audio capture, channel cleanup, bounded fallback trails and release/restore.');

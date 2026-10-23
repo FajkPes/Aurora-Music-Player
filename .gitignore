@@ -1,10 +1,6 @@
-# Headless browser audit profiles
-test-profile-*/
-
-# Personal/example loudness profile data is not required by the application.
-Example Loudness Profiles.json
-
-# Local release artifacts
-release/
-*.zip
-SHA256SUMS.txt
+/backups/
+/review-screenshots/
+/test-results/
+/node_modules/
+/musicviz-*.json
+/NEWEST*.json
