@@ -24,6 +24,10 @@ The optional remembered library is stored in the browser, not in the application
 
 [Detailed documentation](README-DETAILS.md) · [All releases](https://github.com/FajkPes/Aurora-Music-Player/releases)
 
+## Playback, visualization and your library
+
+Aurora serves both as a player and a music-reactive visual environment. Search your library, add favorites, control the queue, shuffle or repeat, then customize the visualizer, background and effects. Settings are grouped by function, with advanced controls available when needed. The optional remembered library stores copies in the browser; it is not a backup of the original files. M3U8 export saves a playlist of paths, not the music files themselves.
+
 ## Credits
 
 **Idea, concept and design:** FajkPes  
