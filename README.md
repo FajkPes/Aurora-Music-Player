@@ -23,3 +23,8 @@ In **Settings**, choose visualizers and effects, then adjust performance limits 
 The optional remembered library is stored in the browser, not in the application files. Use export and backup features when moving to another browser or computer. The older single-file 6.x releases remain available.
 
 [Detailed documentation](README-DETAILS.md) · [All releases](https://github.com/FajkPes/Aurora-Music-Player/releases)
+
+## Credits
+
+**Idea, concept and design:** FajkPes  
+**Coding:** ChatGPT Codex, Claude and Google Antigravity
